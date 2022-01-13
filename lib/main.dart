@@ -63,6 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) => _incrementCounter());
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -104,17 +106,17 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FutureBuilder(
-                future: Future<int>.delayed(
-                    const Duration(milliseconds: 150), () => 1),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Container(
-                        color: Colors.orange, width: 100, height: 100);
-                  }
-                  return const CircularProgressIndicator();
-                },
-              ),
+              child: (_counter % 2 == 0)
+                  ? Container(
+                      color: Colors.green,
+                      width: 100,
+                      height: 100,
+                    )
+                  : Container(
+                      color: Colors.orange,
+                      width: 100,
+                      height: 100,
+                    ),
             ),
           ],
         ),

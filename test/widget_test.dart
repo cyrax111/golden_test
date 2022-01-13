@@ -10,13 +10,13 @@ void main() {
 
     await tester.pumpWidgetBuilder(const MyHomePage(title: 'Title'));
 
-    await tester.pump(const Duration(milliseconds: 50));
-
     await multiScreenGolden(
       tester,
       'my_home_page',
       devices: [Device.phone, Device.iphone11, Device.tabletLandscape],
-      customPump: (tester) async {},
+      customPump: (tester) async {
+        await tester.pump();
+      },
       deviceSetup: (device, tester) async {},
     );
 
