@@ -63,7 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _incrementCounter());
+    if (_counter < 10) {
+      WidgetsBinding.instance?.addPostFrameCallback((_) => _incrementCounter());
+    }
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
